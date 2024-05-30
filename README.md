@@ -1,2 +1,2 @@
-# ecommerce-digital
-Projeto para desenvolvimento pessoal
+# EcomerceDigitral
+Um projeto para o desenvolvimento pessoal
