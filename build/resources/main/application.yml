@@ -1,0 +1,7 @@
+spring:
+    application:
+        name: ecomerce-digitral
+
+logging:
+  level:
+    ROOT: INFO
