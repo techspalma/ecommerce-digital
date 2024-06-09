@@ -1,7 +1,5 @@
 package com.ecommerce.digital.domain;
 
-import java.util.regex.Pattern;
-
 public class User {
 
     private Long id;

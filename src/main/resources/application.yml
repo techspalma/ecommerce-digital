@@ -1,6 +1,6 @@
 spring:
     application:
-        name: ecomerce-digitral
+        name: ecommerce-digital
 
 logging:
   level:
