@@ -7,19 +7,19 @@ public class User {
     private Integer idade;
     private Endereco endereco;
 
-    public User(String nome, Integer idade, String rua, String bairro) {
+    public User(String nome, Integer idade, String rua, String numero, String bairro, String cidade, String uf, String cep) {
 
-        if (nome  == null) throw new IllegalArgumentException("Campo requerido");
-        if (idade == null & idade <=  0)  new IllegalArgumentException("Campo requerido");
+        if (nome == null) throw new IllegalArgumentException("Campo requerido");
+        if (idade == null & idade <=  0) throw new IllegalArgumentException("Campo requerido");
         this.nome = nome;
         this.idade = idade;
-        this.endereco = new Endereco(rua, bairro);
+        this.endereco = new Endereco(rua, numero, bairro, cidade, uf, cep);
     }
 
     public User(String nome, Integer idade, Endereco endereco) {
 
         if (nome  == null) throw new IllegalArgumentException("Campo requerido");
-        if (idade == null & idade <=  0)  new IllegalArgumentException("Campo requerido");
+        if (idade == null & idade <=  0) throw new IllegalArgumentException("Campo requerido");
         this.nome = nome;
         this.idade = idade;
         this.endereco = endereco;
