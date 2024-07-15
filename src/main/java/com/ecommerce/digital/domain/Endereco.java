@@ -1,7 +1,10 @@
 package com.ecommerce.digital.domain;
 
-public class Endereco {
+// domínio é tudo aquilo que se refere à lógica de negócios
+// aqui não utilizou-se o Lombok para gerar construtor e metodos de get/set, pois a customização das regras ficam mais difíceis de serem efetuadas.
+// assim como não forma adicionados os setters já que a informaçao deve vir na chamada pelo controller.
 
+public class Endereco {
     private final String rua;
     private final String numero;
     private final String bairro;
@@ -9,6 +12,7 @@ public class Endereco {
     private final String uf;
     private final String cep;
 
+    // no construtor abaixo, já se fazem as validações de negócio e lança o erro caso o campo seja nulo.
     public Endereco(String rua, String numero, String bairro, String cidade, String uf, String cep) {
         if (rua == null) throw new RuntimeException("not be null");
         if (numero == null) throw new RuntimeException("not be null");
