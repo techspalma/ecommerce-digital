@@ -8,6 +8,9 @@ public record UserDto(
         @NotBlank(message="Campo nome não pode ser vazio")
         String nome,
         Integer idade,
+        @NotNull(message="Campo email não pode ser null")
+        @NotBlank(message="Campo email não pode ser vazio")
+        String email,
         @NotNull(message="Campo rua não pode ser null")
         @NotBlank(message="Campo rua não pode ser vazio")
         String rua,

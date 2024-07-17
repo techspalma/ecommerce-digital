@@ -10,6 +10,7 @@ public record UserDto( // o record é utilizado a partir do Java 21 e facilita a
         @GeneratedValue(strategy = GenerationType.AUTO) // anotação que gera automaticamente valores de Id
         Integer id,
         String nome,
+        String email,
         int idade,
         @OneToOne // indica o tipo de relação com a outra tabela. No caso daqui, um endereço dessa tabela corresposnde a um endereço da tabela de endereço
         @JoinColumn(name="endereco_id", referencedColumnName = "id") // indica onde é feita a junção entre tabelas. E nesse caso informa que os Ids citados nessa tabela correspondem à coluna de endereço_id
