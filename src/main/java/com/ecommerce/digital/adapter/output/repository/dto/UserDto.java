@@ -23,4 +23,8 @@ public class UserDto { // o record é utilizado a partir do Java 21 e facilita a
                 this.idade = idade;
                 this.endereco = endereco;
         }
+
+        public UserDto() {
+                super();
+        }
 }

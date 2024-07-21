@@ -35,6 +35,7 @@ public class EnrollInputPortCreate implements EnrollUseCase {
 
             userRepository.save(userDto);
         };
+        // quero que devolva um erro ou um aviso dizendo que o email ja está cadastrado.
     }
 
     public UserDto getUserByEmail(String email) {

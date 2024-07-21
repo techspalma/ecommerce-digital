@@ -38,7 +38,7 @@ public class User {
     }
 
     public String getEmail() {
-        return nome;
+        return email;
     }
 
     public int getIdade() {
