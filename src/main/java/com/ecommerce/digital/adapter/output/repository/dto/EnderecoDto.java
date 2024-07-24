@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 @Table(name="Endereco")  // anotação que dá o nome da tabela no banco de dados
 public class EnderecoDto{
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
-        Integer id;
+        Long id;
         @Column(length = 60) // informo as característica de cada coluna. Se nao tiver alguma caract especial nao coloco
         String rua;
         @Column(length = 4)
@@ -23,7 +23,7 @@ public class EnderecoDto{
         @Column(length = 9)
         String cep;
 
-        public EnderecoDto(Integer id, String rua, String numero, String bairro, String cidade, String uf, String cep) {
+        public EnderecoDto(Long id, String rua, String numero, String bairro, String cidade, String uf, String cep) {
                 this.id = id;
                 this.rua = rua;
                 this.numero = numero;
@@ -35,5 +35,20 @@ public class EnderecoDto{
 
         public EnderecoDto() {
                 super();
+        }
+
+        public EnderecoDto(Endereco endereco) {
+                this(endereco.getId(),
+                        endereco.getRua(),
+                        endereco.getNumero(),
+                        endereco.getBairro(),
+                        endereco.getCidade(),
+                        endereco.getUf(),
+                        endereco.getCep()
+                );
+        }
+
+        public Endereco toDomain() {
+                return new Endereco(id, rua, numero, bairro, cidade, uf, cep);
         }
 }

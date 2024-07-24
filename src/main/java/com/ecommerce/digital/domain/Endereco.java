@@ -5,6 +5,7 @@ package com.ecommerce.digital.domain;
 // assim como não forma adicionados os setters já que a informaçao deve vir na chamada pelo controller.
 
 public class Endereco {
+    private final Long id;
     private final String rua;
     private final String numero;
     private final String bairro;
@@ -13,19 +14,24 @@ public class Endereco {
     private final String cep;
 
     // no construtor abaixo, já se fazem as validações de negócio e lança o erro caso o campo seja nulo.
-    public Endereco(String rua, String numero, String bairro, String cidade, String uf, String cep) {
+    public Endereco(Long id, String rua, String numero, String bairro, String cidade, String uf, String cep) {
         if (rua == null) throw new RuntimeException("not be null");
         if (numero == null) throw new RuntimeException("not be null");
         if (bairro == null) throw new RuntimeException("not be null");
         if (cidade == null) throw new RuntimeException("not be null");
         if (uf == null) throw new RuntimeException("not be null");
         if (cep == null) throw new RuntimeException("not be null");
+        this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.uf = uf;
         this.cep = cep;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getRua() {

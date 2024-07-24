@@ -1,5 +1,7 @@
 package com.ecommerce.digital.adapter.output.repository.dto;
 
+import com.ecommerce.digital.domain.Endereco;
+import com.ecommerce.digital.domain.User;
 import jakarta.persistence.*;
 
 // esse DTO foi adicionado em adapter > input > rest > dto pq
@@ -8,7 +10,7 @@ import jakarta.persistence.*;
 public class UserDto { // o record é utilizado a partir do Java 21 e facilita a escrita.
         @Id //anotação que informa o framework JPA qual atributo da tabela será o Id
         @GeneratedValue(strategy = GenerationType.AUTO) // anotação que gera automaticamente valores de Id
-        Integer id;
+        Long id;
         String nome;
         String email;
         int idade;
@@ -16,7 +18,7 @@ public class UserDto { // o record é utilizado a partir do Java 21 e facilita a
         @JoinColumn(name="endereco_id", referencedColumnName = "id") // indica onde é feita a junção entre tabelas. E nesse caso informa que os Ids citados nessa tabela correspondem à coluna de endereço_id
         EnderecoDto endereco;
 
-        public UserDto(Integer id, String nome, String email, int idade, EnderecoDto endereco) {
+        public UserDto(Long id, String nome, String email, int idade, EnderecoDto endereco) {
                 this.id = id;
                 this.nome = nome;
                 this.email = email;
@@ -26,5 +28,18 @@ public class UserDto { // o record é utilizado a partir do Java 21 e facilita a
 
         public UserDto() {
                 super();
+        }
+
+        public UserDto(User user) {
+                this(null,
+                        user.getNome(),
+                        user.getEmail(),
+                        user.getIdade(),
+                        new EnderecoDto(user.getEndereco())
+                );
+        }
+
+        public User toDomain() {
+                return new User(id, nome, email, idade, endereco.toDomain());
         }
 }

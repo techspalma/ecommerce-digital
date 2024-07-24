@@ -36,6 +36,6 @@ public record UserDto(
         String cep) {
 
         public User toDomain() {
-                return new User(nome, email, idade, rua, numero, bairro, cidade, uf, cep);
+                return new User(null, nome, email, idade, rua, numero, bairro, cidade, uf, cep);
         }
 }
