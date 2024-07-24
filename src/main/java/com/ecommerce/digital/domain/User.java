@@ -17,7 +17,7 @@ public class User {
         this.nome = nome;
         this.idade = idade;
         this.email = email;
-        this.endereco = new Endereco(rua, numero, bairro, cidade, uf, cep);
+        this.endereco = new Endereco(id, rua, numero, bairro, cidade, uf, cep);
     }
 
     public User(Long id, String nome, String email, Integer idade, Endereco endereco) {
