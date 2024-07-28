@@ -1,10 +1,9 @@
 package com.ecommerce.digital.adapter.output.repository.dto;
 
-import com.ecommerce.digital.domain.Endereco;
 import com.ecommerce.digital.domain.User;
 import jakarta.persistence.*;
 
-// esse DTO foi adicionado em adapter > input > rest > dto pq
+// esse DTO foi adicionado em adapter > input > rest > dto
 @Entity // essa anotação indica que é uma entidade do banco de dados. Com essa anotação o JPA saberá criar uma tabela
 @Table(name="User") // anotação que dá o nome da tabela no banco de dados
 public class UserDto { // o record é utilizado a partir do Java 21 e facilita a escrita.
@@ -26,7 +25,7 @@ public class UserDto { // o record é utilizado a partir do Java 21 e facilita a
                 this.endereco = endereco;
         }
 
-        public UserDto() {
+        public UserDto() { // o programa exigiu que eu fizesse esse construtor vazio para funcionar
                 super();
         }
 
@@ -39,7 +38,7 @@ public class UserDto { // o record é utilizado a partir do Java 21 e facilita a
                 );
         }
 
-        public User toDomain() {
+        public User toDomain() { // m;etodo criado para transformar um UserDto em User. (Foi colocado aqui pra facilitar a leitura e tbm a reusabilidade)
                 return new User(id, nome, email, idade, endereco.toDomain());
         }
 }

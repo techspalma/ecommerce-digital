@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserManagementMySql implements UserManagementOutputPort {
@@ -33,5 +34,15 @@ public class UserManagementMySql implements UserManagementOutputPort {
     public List<User> findAll() {
         List<UserDto> usersList = userRepository.findAll();
         return usersList.stream().map(UserDto::toDomain).toList();
+    }
+
+    @Override
+    public Optional<User> findById(int id) {
+        Optional<UserDto> usersById = userRepository.findById(id);
+        if (usersById.isPresent()) {
+            // faço a transformaçao de UserDto pra User e retorno
+            return usersById.map(UserDto::toDomain);
+        }
+        return Optional.empty();
     }
 }

@@ -29,7 +29,16 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<?> findAllUsers() {
-        return ResponseEntity.ok(userManagement.findAll());
+        return ResponseEntity.ok(userManagement.findAll()); // usei o Management aqui, mas nao sei se está correto.
+    }
+
+    @GetMapping("id")
+    @ResponseBody
+    public ResponseEntity<?> findUserById(@RequestParam(required = false) String id) {
+        System.out.println("maran");
+//        int intId = Integer.parseInt(id);
+//        return ResponseEntity.ok(userManagement.findById(intId));
+        return null;
     }
 }
 
