@@ -27,6 +27,7 @@ public class UserManagementMySql implements UserManagementOutputPort {
 
     @Override
     public List<User> findAll() {
-        return List.of();
+        List<UserDto> usersList = userRepository.findAll();
+        return usersList.stream().map(UserDto::toDomain).toList();
     }
 }
