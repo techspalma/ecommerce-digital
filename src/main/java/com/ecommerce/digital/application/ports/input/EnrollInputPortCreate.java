@@ -15,8 +15,8 @@ public class EnrollInputPortCreate implements EnrollUseCase {
 
     @Override
     public void execute(User user) {
-        //primeiro verifica se existe o usuário no banco utilizando e-mail
 
+        //primeiro verifica se existe o usuário no banco utilizando e-mail
         if (getUserByEmail(user.getEmail()) == null) {
             userPort.enroll(user);
         };

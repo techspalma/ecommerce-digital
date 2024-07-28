@@ -22,7 +22,11 @@ public class UserManagementMySql implements UserManagementOutputPort {
 
     @Override
     public User findByMail(String email) {
-        return userRepository.findByEmail(email).toDomain();
+        try {
+            return userRepository.findByEmail(email).toDomain();
+        } catch (Exception e){
+            return null;
+        } // @PALMA eu sei que isso está errado, mas minha intenção é fazer com que caso nao exista o mail cadastrado no banco ele retorne null. Qual a melhor forma de fazer isso?
     }
 
     @Override

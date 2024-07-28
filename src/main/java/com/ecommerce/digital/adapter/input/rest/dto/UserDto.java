@@ -35,7 +35,7 @@ public record UserDto(
         @NotBlank(message="Campo cep não pode ser vazio")
         String cep) {
 
-        public User toDomain() { // uso esse metodo para transformar um userDto em User de dominio
+        public User toDomain() { // uso esse metodo para transformar um userDto em User de domínio
                 return new User(null, nome, email, idade, rua, numero, bairro, cidade, uf, cep);
         }
 }
