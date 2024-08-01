@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface UserManagementOutputPort {
     User enroll(User user);
     User findByMail(String email);
-    List<User> findAll();
+    List<User> findAllUsers();
     Optional<User> findById(int id);
 }

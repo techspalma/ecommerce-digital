@@ -1,8 +1,9 @@
 package com.ecommerce.digital.adapter.input.rest;
 
 import com.ecommerce.digital.adapter.input.rest.dto.UserDto;
-import com.ecommerce.digital.application.ports.output.UserManagementOutputPort;
 import com.ecommerce.digital.application.useCase.EnrollUseCase;
+import com.ecommerce.digital.application.useCase.FindAllUsersUseCase;
+import com.ecommerce.digital.application.useCase.FindUserByIdUseCase;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +18,10 @@ public class UserController {
 
     @Autowired
     EnrollUseCase enrollUseCase;
-
     @Autowired
-    UserManagementOutputPort userManagement;
+    FindAllUsersUseCase findAllUsersUseCase;
+    @Autowired
+    FindUserByIdUseCase findUserByIdUseCase;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) // coloco quando não retorno responseBody, e aí toda req que tiver sucesso devolve o HTTP indicado
@@ -27,18 +29,18 @@ public class UserController {
         enrollUseCase.execute(dataUser.toDomain());
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<?> findAllUsers() {
-        return ResponseEntity.ok(userManagement.findAll()); // usei o Management aqui, mas nao sei se está correto.
+        return ResponseEntity.ok(findAllUsersUseCase.findAllUsers());
     }
 
-    @GetMapping("id")
-    @ResponseBody
-    public ResponseEntity<?> findUserById(@RequestParam(required = false) String id) {
-        System.out.println("maran");
-//        int intId = Integer.parseInt(id);
-//        return ResponseEntity.ok(userManagement.findById(intId));
-        return null;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findUserById(@PathVariable int id) {
+        return ResponseEntity.ok(findUserByIdUseCase.findById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<?> findUserById2(@RequestParam int id) {
+        return ResponseEntity.ok(findUserByIdUseCase.findById(id));
     }
 }
-

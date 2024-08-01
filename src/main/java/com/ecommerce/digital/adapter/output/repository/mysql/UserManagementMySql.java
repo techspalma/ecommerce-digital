@@ -31,7 +31,7 @@ public class UserManagementMySql implements UserManagementOutputPort {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAllUsers() {
         List<UserDto> usersList = userRepository.findAll();
         return usersList.stream().map(UserDto::toDomain).toList();
     }
@@ -40,7 +40,7 @@ public class UserManagementMySql implements UserManagementOutputPort {
     public Optional<User> findById(int id) {
         Optional<UserDto> usersById = userRepository.findById(id);
         if (usersById.isPresent()) {
-            // faço a transformaçao de UserDto pra User e retorno
+            // faço a transformação de UserDto pra User e retorno
             return usersById.map(UserDto::toDomain);
         }
         return Optional.empty();
