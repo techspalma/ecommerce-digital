@@ -10,4 +10,6 @@ public interface UserManagementOutputPort {
     User findByMail(String email);
     List<User> findAllUsers();
     Optional<User> findById(int id);
+    void deleteUserById(int id);
+    void updateUser(User user);
 }

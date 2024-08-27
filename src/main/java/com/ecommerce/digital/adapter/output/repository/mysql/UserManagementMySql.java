@@ -41,8 +41,20 @@ public class UserManagementMySql implements UserManagementOutputPort {
         Optional<UserDto> usersById = userRepository.findById(id);
         if (usersById.isPresent()) {
             // faço a transformação de UserDto pra User e retorno
-            return usersById.map(UserDto::toDomain);
+            var userId = usersById.map(UserDto::toDomain);
+            return userId;
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        UserDto userDto = new UserDto(user);
+        userRepository.save(userDto);
     }
 }

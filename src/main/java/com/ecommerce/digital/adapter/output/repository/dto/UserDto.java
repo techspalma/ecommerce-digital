@@ -17,6 +17,10 @@ public class UserDto { // o record é utilizado a partir do Java 21 e facilita a
         @JoinColumn(name="endereco_id", referencedColumnName = "id") // indica onde é feita a junção entre tabelas. E nesse caso informa que os Ids citados nessa tabela correspondem à coluna de endereço_id
         EnderecoDto endereco;
 
+        public UserDto() { // o programa exigiu que eu fizesse esse construtor vazio para funcionar
+                super();
+        }
+
         public UserDto(Long id, String nome, String email, int idade, EnderecoDto endereco) {
                 this.id = id;
                 this.nome = nome;
@@ -25,12 +29,8 @@ public class UserDto { // o record é utilizado a partir do Java 21 e facilita a
                 this.endereco = endereco;
         }
 
-        public UserDto() { // o programa exigiu que eu fizesse esse construtor vazio para funcionar
-                super();
-        }
-
         public UserDto(User user) {
-                this(null,
+                this(user.getId(), // com esse this utilizo o contrutor de cima
                         user.getNome(),
                         user.getEmail(),
                         user.getIdade(),
@@ -38,7 +38,7 @@ public class UserDto { // o record é utilizado a partir do Java 21 e facilita a
                 );
         }
 
-        public User toDomain() { // m;etodo criado para transformar um UserDto em User. (Foi colocado aqui pra facilitar a leitura e tbm a reusabilidade)
+        public User toDomain() { // método criado para transformar um UserDto em User. (Foi colocado aqui pra facilitar a leitura e tbm a reusabilidade)
                 return new User(id, nome, email, idade, endereco.toDomain());
         }
 }

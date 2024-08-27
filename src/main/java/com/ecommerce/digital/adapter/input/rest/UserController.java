@@ -1,9 +1,7 @@
 package com.ecommerce.digital.adapter.input.rest;
 
 import com.ecommerce.digital.adapter.input.rest.dto.UserDto;
-import com.ecommerce.digital.application.useCase.EnrollUseCase;
-import com.ecommerce.digital.application.useCase.FindAllUsersUseCase;
-import com.ecommerce.digital.application.useCase.FindUserByIdUseCase;
+import com.ecommerce.digital.application.useCase.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +20,10 @@ public class UserController {
     FindAllUsersUseCase findAllUsersUseCase;
     @Autowired
     FindUserByIdUseCase findUserByIdUseCase;
+    @Autowired
+    DeleteByUserIdUseCase deleteByUserIdUseCase;
+    @Autowired
+    UpdateByUserIdUseCase updateByUserIdUseCase;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) // coloco quando não retorno responseBody, e aí toda req que tiver sucesso devolve o HTTP indicado
@@ -42,5 +44,17 @@ public class UserController {
     @GetMapping
     public ResponseEntity<?> findUserById2(@RequestParam int id) {
         return ResponseEntity.ok(findUserByIdUseCase.findById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUserById(@PathVariable int id) {
+        deleteByUserIdUseCase.deleteUserById(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateUserById(@PathVariable int id, @Valid @RequestBody UserDto dataUser) {
+        updateByUserIdUseCase.updateUserById(id, dataUser.toDomain());
     }
 }

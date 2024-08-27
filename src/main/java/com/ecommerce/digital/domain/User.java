@@ -9,7 +9,6 @@ public class User {
     private Endereco endereco;
 
     public User(Long id, String nome, String email, Integer idade, String rua, String numero, String bairro, String cidade, String uf, String cep) {
-
         if (nome == null) throw new IllegalArgumentException("Campo requerido");
         if (idade == null & idade <=  0) throw new IllegalArgumentException("Campo requerido");
         if (email == null) throw new IllegalArgumentException("Campo requerido");
@@ -21,18 +20,17 @@ public class User {
     }
 
     public User(Long id, String nome, String email, Integer idade, Endereco endereco) {
-
         if (nome  == null) throw new IllegalArgumentException("Campo requerido");
         if (email  == null) throw new IllegalArgumentException("Campo requerido");
         if (idade == null & idade <=  0) throw new IllegalArgumentException("Campo requerido");
         this.id = id;
         this.nome = nome;
+        this.email = email;
         this.idade = idade;
         this.endereco = endereco;
     }
 
-    public User() {
-    }
+    public User() {}
 
     public Long getId() {
         return id;
@@ -52,5 +50,16 @@ public class User {
 
     public Endereco getEndereco() {
         return endereco;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void update(User user) {
+        this.nome = user.getNome();
+        this.email = user.getEmail();
+        this.idade = user.getIdade();
+        this.endereco = user.getEndereco();
     }
 }

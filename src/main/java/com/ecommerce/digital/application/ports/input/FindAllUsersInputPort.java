@@ -4,9 +4,11 @@ import com.ecommerce.digital.application.ports.output.UserManagementOutputPort;
 import com.ecommerce.digital.application.useCase.FindAllUsersUseCase;
 import com.ecommerce.digital.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class FindAllUsersInputPort implements FindAllUsersUseCase {
     @Autowired
     UserManagementOutputPort userManagement;
