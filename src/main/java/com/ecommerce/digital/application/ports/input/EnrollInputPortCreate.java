@@ -1,6 +1,5 @@
 package com.ecommerce.digital.application.ports.input;
 
-import com.ecommerce.digital.adapter.output.repository.dto.UserDto;
 import com.ecommerce.digital.application.ports.output.UserManagementOutputPort;
 import com.ecommerce.digital.application.useCase.EnrollUseCase;
 import com.ecommerce.digital.domain.User;

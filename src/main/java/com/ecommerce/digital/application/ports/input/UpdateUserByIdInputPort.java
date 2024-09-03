@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Component
 public class UpdateUserByIdInputPort implements UpdateByUserIdUseCase {
+
     @Autowired
     UserManagementOutputPort userManagement;
 
@@ -17,11 +18,9 @@ public class UpdateUserByIdInputPort implements UpdateByUserIdUseCase {
     public void updateUserById(int id, User user) {
         Optional<User> userFromDb = userManagement.findById(id);
         if (userFromDb.isPresent()) {
-            userFromDb.map((userDb) -> {
-                userDb.update(user);
-                return userDb;
-            });
+            user.setId((long) id);
+            userManagement.updateUser(user);
         }
-        userManagement.updateUser(userFromDb.get());
+        userManagement.enroll(user);
     }
 }
