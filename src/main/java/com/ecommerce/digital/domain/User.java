@@ -23,6 +23,7 @@ public class User {
         if (nome  == null) throw new IllegalArgumentException("Campo requerido");
         if (email  == null) throw new IllegalArgumentException("Campo requerido");
         if (idade == null & idade <=  0) throw new IllegalArgumentException("Campo requerido");
+        if (endereco == null) throw new IllegalArgumentException("O endereço é requerido");
         this.id = id;
         this.nome = nome;
         this.email = email;

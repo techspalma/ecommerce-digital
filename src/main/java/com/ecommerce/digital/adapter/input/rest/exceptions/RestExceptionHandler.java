@@ -1,4 +1,4 @@
-package com.ecommerce.digital.adapter.input.rest;
+package com.ecommerce.digital.adapter.input.rest.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

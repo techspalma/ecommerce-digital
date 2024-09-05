@@ -4,6 +4,8 @@ package com.ecommerce.digital.domain;
 // aqui não utilizou-se o Lombok para gerar construtor e metodos de get/set, pois a customização das regras ficam mais difíceis de serem efetuadas.
 // assim como não forma adicionados os setters já que a informaçao deve vir na chamada pelo controller.
 
+import com.ecommerce.digital.adapter.input.rest.exceptions.NotNullException;
+
 public class Endereco {
     private final Long id;
     private final String rua;
@@ -15,12 +17,12 @@ public class Endereco {
 
     // no construtor abaixo, já se fazem as validações de negócio e lança o erro caso o campo seja nulo.
     public Endereco(Long id, String rua, String numero, String bairro, String cidade, String uf, String cep) {
-        if (rua == null) throw new RuntimeException("not be null");
-        if (numero == null) throw new RuntimeException("not be null");
-        if (bairro == null) throw new RuntimeException("not be null");
-        if (cidade == null) throw new RuntimeException("not be null");
-        if (uf == null) throw new RuntimeException("not be null");
-        if (cep == null) throw new RuntimeException("not be null");
+        if (rua == null) throw new NotNullException("not be null");
+        if (numero == null) throw new NotNullException("not be null");
+        if (bairro == null) throw new NotNullException("not be null");
+        if (cidade == null) throw new NotNullException("not be null");
+        if (uf == null) throw new NotNullException("not be null");
+        if (cep == null) throw new NotNullException("not be null");
         this.id = id;
         this.rua = rua;
         this.numero = numero;
