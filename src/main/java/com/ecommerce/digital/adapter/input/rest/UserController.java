@@ -35,7 +35,6 @@ public class UserController {
         logger.info("Início processamento de criação de usuário");
         enrollUseCase.execute(dataUser.toDomain());
         logger.info("Fim processamento de criação de usuário");
-
     }
 
     @GetMapping("/all")
@@ -50,7 +49,7 @@ public class UserController {
     public ResponseEntity<?> findUserById(@PathVariable int id) {
         logger.info("Início processamento de busca de usuário por id");
         var user = findUserByIdUseCase.findById(id);
-        logger.info("Início processamento de busca de usuário por id");
+        logger.info("Fim processamento de busca de usuário por id");
         return ResponseEntity.ok(user);
     }
 
@@ -58,7 +57,7 @@ public class UserController {
     public ResponseEntity<?> findUserById2(@RequestParam int id) {
         logger.info("Início processamento de busca de usuário por id");
         var user = findUserByIdUseCase.findById(id);
-        logger.info("Início processamento de busca de usuário por id");
+        logger.info("Fim processamento de busca de usuário por id");
         return ResponseEntity.ok(user);
     }
 
