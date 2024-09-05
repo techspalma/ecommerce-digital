@@ -23,7 +23,12 @@ public class UserManagementMySql implements UserManagementOutputPort {
 
     @Override
     public User findByMail(String email) {
-        return userRepository.findByEmail(email).toDomain();
+        UserDto userDto =  userRepository.findByEmail(email);
+        if (userDto != null) {
+            return userDto.toDomain();
+        } else {
+            return null;
+        }
     }
 
     @Override
