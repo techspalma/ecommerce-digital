@@ -35,7 +35,7 @@ class UpdateUserByIdInputPortTest {
         when(userManagement.findById(userId)).thenReturn(Optional.of(existingUser));
 
         updateUserByIdInputPort.updateUserById(userId, updatedUser);
-
+        
         verify(userManagement, times(1)).updateUser(any());
     }
 

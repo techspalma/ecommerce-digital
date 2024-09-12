@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface UserManagementOutputPort {
     User enroll(User user);
     User findByMail(String email);
-    List<User> findAllUsers();
+    List<User> findAllUsers(int pageNumber, int size);
     Optional<User> findById(int id);
     void deleteUserById(int id);
     void updateUser(User user);

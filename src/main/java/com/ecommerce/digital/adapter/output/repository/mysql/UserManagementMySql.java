@@ -4,6 +4,9 @@ import com.ecommerce.digital.adapter.output.repository.dto.UserDto;
 import com.ecommerce.digital.application.ports.output.UserManagementOutputPort;
 import com.ecommerce.digital.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -32,8 +35,8 @@ public class UserManagementMySql implements UserManagementOutputPort {
     }
 
     @Override
-    public List<User> findAllUsers() {
-        List<UserDto> usersList = userRepository.findAll();
+    public List<User> findAllUsers(int pageNumber, int size) {
+        Page<UserDto> usersList = userRepository.findAll(PageRequest.of(pageNumber, size));
         return usersList.stream().map(UserDto::toDomain).toList();
     }
 

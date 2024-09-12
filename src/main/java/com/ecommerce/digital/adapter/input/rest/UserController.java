@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -37,10 +39,10 @@ public class UserController {
         logger.info("Fim processamento de criação de usuário");
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<?> findAllUsers() {
+    @GetMapping
+    public ResponseEntity<?> findAllUsers(@RequestParam(name="pageNumber") int pageNumber, @RequestParam(name="size") int size) {
         logger.info("Início processamento de busca de usuários");
-        var usersList = findAllUsersUseCase.findAllUsers();
+        var usersList = findAllUsersUseCase.findAllUsers(pageNumber, size);
         logger.info("Fim processamento de busca de usuários");
         return ResponseEntity.ok(usersList);
     }
@@ -53,13 +55,13 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping
-    public ResponseEntity<?> findUserById2(@RequestParam int id) {
-        logger.info("Início processamento de busca de usuário por id");
-        var user = findUserByIdUseCase.findById(id);
-        logger.info("Fim processamento de busca de usuário por id");
-        return ResponseEntity.ok(user);
-    }
+//    @GetMapping
+//    public ResponseEntity<?> findUserById2(@RequestParam int id) {
+//        logger.info("Início processamento de busca de usuário por id");
+//        var user = findUserByIdUseCase.findById(id);
+//        logger.info("Fim processamento de busca de usuário por id");
+//        return ResponseEntity.ok(user);
+//    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -18,5 +18,8 @@ public class UserTest {
 
         // then
         Assertions.assertEquals(nome, user.getNome());
+        Assertions.assertEquals(idade, user.getIdade());
+        Assertions.assertEquals(email, user.getEmail());
+        Assertions.assertEquals(endereco, user.getEndereco());
     }
 }

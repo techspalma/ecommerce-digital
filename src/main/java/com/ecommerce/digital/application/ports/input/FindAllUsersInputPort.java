@@ -14,7 +14,7 @@ public class FindAllUsersInputPort implements FindAllUsersUseCase {
     UserManagementOutputPort userManagement;
 
     @Override
-    public List<User> findAllUsers() {
-        return userManagement.findAllUsers();
+    public List<User> findAllUsers(int pageNumber, int size) {
+        return userManagement.findAllUsers(pageNumber, size);
     }
 }
