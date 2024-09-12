@@ -3,6 +3,7 @@ package com.ecommerce.digital.application.ports.input;
 import com.ecommerce.digital.application.ports.output.UserManagementOutputPort;
 import com.ecommerce.digital.application.useCase.EnrollUseCase;
 import com.ecommerce.digital.domain.User;
+import com.ecommerce.digital.domain.exceptions.ConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,12 +15,11 @@ public class EnrollInputPortCreate implements EnrollUseCase {
 
     @Override
     public void execute(User user) {
-
-        //primeiro verifica se existe o usuário no banco utilizando e-mail
         if (getUserByEmail(user.getEmail()) == null) {
             userPort.enroll(user);
-        };
-        // quero que devolva um erro ou um aviso dizendo que o email ja está cadastrado.
+        } else{
+            throw new ConflictException("Usuário já foi cadastrado");
+        }
     }
 
     public User getUserByEmail(String email) {
