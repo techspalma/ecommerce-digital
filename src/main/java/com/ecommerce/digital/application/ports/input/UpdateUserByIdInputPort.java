@@ -18,6 +18,7 @@ public class UpdateUserByIdInputPort implements UpdateByUserIdUseCase {
     public void updateUserById(int id, User user) {
         Optional<User> userFromDb = userManagement.findById(id);
         if (userFromDb.isPresent()) {
+            userFromDb.get().update(user);
             user.setId((long) id);
             userManagement.updateUser(user);
         }

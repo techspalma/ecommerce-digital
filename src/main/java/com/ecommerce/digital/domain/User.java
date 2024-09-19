@@ -61,6 +61,6 @@ public class User {
         this.nome = user.getNome();
         this.email = user.getEmail();
         this.idade = user.getIdade();
-        this.endereco = user.getEndereco();
+        this.endereco = this.endereco.update(user.getEndereco());
     }
 }

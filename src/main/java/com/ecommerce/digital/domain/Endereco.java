@@ -59,4 +59,9 @@ public class Endereco {
     public String getCep() {
         return cep;
     }
+
+    public Endereco update(Endereco endereco) {
+        return new Endereco(this.getId(), endereco.getRua(), endereco.getNumero(), endereco.getBairro(), endereco.getCidade(), endereco.getUf(), endereco.getCep());
+    }
+
 }
